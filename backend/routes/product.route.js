@@ -11,16 +11,16 @@ import {
 // initialize express router
 const router = express.Router();
 
-// get route for all products
+// get router for all products
 router.get("/", getProducts);
 
 // post router for product
 router.post("/", createProduct);
 
-// Update route for a product
+// Update router for a product
 router.put("/:id", updateProduct);
 
-// delete route for product
+// delete router for product
 router.delete("/:id", deleteProduct);
 
 export default router;
