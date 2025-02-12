@@ -12,7 +12,7 @@ const app = express();
 // middleware for parsing json data
 app.use(express.json());
 
-// middleware to use routes
+// middleware to use product routes
 app.use("/api/products", productRoutes);
 
 // port
