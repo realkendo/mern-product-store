@@ -1,11 +1,13 @@
 import React from "react";
+// import Navbar from "@/components/ui/navbar";
 
-const homePage = () => {
+const HomePage = () => {
   return (
     <div>
+      {/* <Navbar /> */}
       <h1>home page</h1>
     </div>
   );
 };
 
-export default homePage;
+export default HomePage;

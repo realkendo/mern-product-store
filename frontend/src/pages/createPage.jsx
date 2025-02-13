@@ -1,6 +1,6 @@
 import React from "react";
 
-const createPage = () => {
+const CreatePage = () => {
   return (
     <div>
       <h1>create page</h1>
@@ -8,4 +8,4 @@ const createPage = () => {
   );
 };
 
-export default createPage;
+export default CreatePage;
