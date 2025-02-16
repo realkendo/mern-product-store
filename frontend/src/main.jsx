@@ -6,10 +6,10 @@ import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ChakraProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ChakraProvider>
         <App />
-      </BrowserRouter>
-    </ChakraProvider>
+      </ChakraProvider>
+    </BrowserRouter>
   </StrictMode>
 );
