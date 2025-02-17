@@ -51,6 +51,12 @@ function Navbar() {
               <PlusSquareIcon />
             </Button>
           </Link>
+
+          <Link to={"/create"} color="white">
+            <Button>
+              <PlusSquareIcon />
+            </Button>
+          </Link>
         </HStack>
 
         {/* Mobile Menu Button */}
