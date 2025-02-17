@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import {
   Box,
   Flex,
@@ -18,7 +17,7 @@ function Navbar() {
 
   return (
     <Box
-      bgGradient="linear(to-r, blue.600, purple.600)"
+      bgGradient="linear(to-r, blue.600, purple.800)"
       color="white"
       px={6}
       py={4}
@@ -30,7 +29,7 @@ function Navbar() {
       <Flex align="center">
         {/* Logo */}
         <Box fontSize="2xl" fontWeight="bold" letterSpacing="wide">
-          🚀 MyBrand
+          🏦dbCapital
         </Box>
 
         <Spacer />
@@ -73,7 +72,7 @@ function Navbar() {
             <NavItem href="#">Services</NavItem>
             <NavItem href="#">About</NavItem>
             <NavItem href="#">Contact</NavItem>
-            <Button colorScheme="pink" variant="solid" borderRadius="full">
+            <Button colorScheme="red" variant="solid" borderRadius="full">
               Sign Up
             </Button>
           </Flex>
@@ -97,7 +96,7 @@ const NavItem = ({ href, children }) => (
     href={href}
     fontSize="lg"
     fontWeight="medium"
-    _hover={{ color: "pink.300" }}
+    _hover={{ color: "red.300" }}
   >
     {children}
   </Link>
@@ -112,7 +111,7 @@ const SocialIcon = ({ href, icon }) => (
       variant="ghost"
       color="white"
       size="lg"
-      _hover={{ color: "pink.300", transform: "scale(1.2)" }}
+      _hover={{ color: "red.300", transform: "scale(1.2)" }}
       transition="0.3s"
     />
   </Link>
