@@ -10,7 +10,6 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { FaFacebook, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
 
 function Navbar() {
   const { isOpen, onToggle } = useDisclosure(); // Mobile menu state
@@ -78,14 +77,6 @@ function Navbar() {
           </Flex>
         </Box>
       </Collapse>
-
-      {/* Social Media Icons */}
-      <Flex mt={3} justify="center" gap={4}>
-        <SocialIcon href="https://facebook.com" icon={<FaFacebook />} />
-        <SocialIcon href="https://twitter.com" icon={<FaTwitter />} />
-        <SocialIcon href="https://instagram.com" icon={<FaInstagram />} />
-        <SocialIcon href="https://github.com" icon={<FaGithub />} />
-      </Flex>
     </Box>
   );
 }
@@ -99,21 +90,6 @@ const NavItem = ({ href, children }) => (
     _hover={{ color: "red.300" }}
   >
     {children}
-  </Link>
-);
-
-// Social Media Icon Component
-const SocialIcon = ({ href, icon }) => (
-  <Link href={href} isExternal>
-    <IconButton
-      aria-label="Social Icon"
-      icon={icon}
-      variant="ghost"
-      color="white"
-      size="lg"
-      _hover={{ color: "red.300", transform: "scale(1.2)" }}
-      transition="0.3s"
-    />
   </Link>
 );
 
