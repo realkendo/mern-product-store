@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
 
 function Footer() {
   return (
-    <Box bg="gray.900" color="white" py={6} mt={10} textAlign="center">
+    <Box bg="purple.600" color="white" py={6} mt={10} textAlign="center">
       <Flex justify="center" gap={4}>
         <SocialIcon href="https://facebook.com" icon={<FaFacebook />} />
         <SocialIcon href="https://twitter.com" icon={<FaTwitter />} />
