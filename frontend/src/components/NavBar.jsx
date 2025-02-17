@@ -9,7 +9,7 @@ import {
   Spacer,
   HStack,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
 function Navbar() {
   const { isOpen, onToggle } = useDisclosure(); // Mobile menu state
@@ -44,6 +44,15 @@ function Navbar() {
           </Button>
         </HStack>
 
+        {/* toggle modes */}
+        <HStack spacing={2} alignItems={"center"}>
+          <Link to={"/create"} color="white">
+            <Button>
+              <PlusSquareIcon />
+            </Button>
+          </Link>
+        </HStack>
+
         {/* Mobile Menu Button */}
         <IconButton
           aria-label="Toggle Menu"
@@ -67,10 +76,10 @@ function Navbar() {
           borderRadius="md"
         >
           <Flex direction="column" gap={3} align="center">
-            <NavItem href="#">Home</NavItem>
-            <NavItem href="#">Services</NavItem>
-            <NavItem href="#">About</NavItem>
-            <NavItem href="#">Contact</NavItem>
+            <NavItem href="/">Home</NavItem>
+            <NavItem href="/services">Services</NavItem>
+            <NavItem href="/about">About</NavItem>
+            <NavItem href="/contact">Contact</NavItem>
             <Button colorScheme="red" variant="solid" borderRadius="full">
               Sign Up
             </Button>
