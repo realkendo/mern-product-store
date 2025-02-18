@@ -9,14 +9,19 @@ import {
   Spacer,
   HStack,
 } from "@chakra-ui/react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { HamburgerIcon, CloseIcon, PlusSquareIcon } from "@chakra-ui/icons";
+import { useColorMode } from "@chakra-ui/react";
 
 function Navbar() {
   const { isOpen, onToggle } = useDisclosure(); // Mobile menu state
 
+  // Toggle light/dark mode
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Box
-      bgGradient="linear(to-r, blue.600, purple.800)"
+      bgGradient="linear(to-r, purple.900, blue.900, purple.900)"
       color="white"
       px={6}
       py={4}
@@ -28,7 +33,7 @@ function Navbar() {
       <Flex align="center">
         {/* Logo */}
         <Box fontSize="2xl" fontWeight="bold" letterSpacing="wide">
-          🏦dbCapital
+          🏦db Stores
         </Box>
 
         <Spacer />
@@ -39,24 +44,22 @@ function Navbar() {
           <NavItem href="#">Services</NavItem>
           <NavItem href="#">About</NavItem>
           <NavItem href="#">Contact</NavItem>
-          <Button colorScheme="pink" variant="solid" borderRadius="full">
+          <Button colorScheme="red" variant="solid">
             Sign Up
           </Button>
         </HStack>
 
-        {/* toggle modes */}
-        <HStack spacing={2} alignItems={"center"}>
+        {/* Toggle modes */}
+        <HStack spacing={2} alignItems={"center"} margin={4}>
           <Link to={"/create"} color="white">
-            <Button>
+            <Button colorScheme="green" variant="solid">
               <PlusSquareIcon />
             </Button>
           </Link>
 
-          <Link to={"/create"} color="white">
-            <Button>
-              <PlusSquareIcon />
-            </Button>
-          </Link>
+          <Button onClick={toggleColorMode} variant="outline">
+            {colorMode === "light" ? <FaMoon /> : <FaSun />}
+          </Button>
         </HStack>
 
         {/* Mobile Menu Button */}
@@ -68,7 +71,7 @@ function Navbar() {
           variant="outline"
           color="white"
           borderColor="white"
-          _hover={{ bg: "whiteAlpha.300" }}
+          _hover={{ bg: "red.500" }}
         />
       </Flex>
 
@@ -102,7 +105,7 @@ const NavItem = ({ href, children }) => (
     href={href}
     fontSize="lg"
     fontWeight="medium"
-    _hover={{ color: "red.300" }}
+    _hover={{ color: "red.500" }}
   >
     {children}
   </Link>
