@@ -33,7 +33,7 @@ function Navbar() {
       <Flex align="center">
         {/* Logo */}
         <Box fontSize="2xl" fontWeight="bold" letterSpacing="wide">
-          🏦db Stores
+          🏦dB Stores
         </Box>
 
         <Spacer />
@@ -44,9 +44,11 @@ function Navbar() {
           <NavItem href="#">Services</NavItem>
           <NavItem href="#">About</NavItem>
           <NavItem href="#">Contact</NavItem>
-          <Button colorScheme="red" variant="solid">
-            Sign Up
-          </Button>
+          <Link to={"/signup"} color="white">
+            <Button colorScheme="red" variant="solid">
+              Sign Up
+            </Button>
+          </Link>
         </HStack>
 
         {/* Toggle modes */}
