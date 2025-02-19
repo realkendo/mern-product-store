@@ -17,7 +17,7 @@ function Footer() {
         <SocialIcon href="https://github.com" icon={<FaGithub />} />
       </Flex>
       <Box mt={4} fontSize="sm">
-        &copy; {new Date().getFullYear()} dbCapital. All rights reserved.
+        &copy; {new Date().getFullYear()} jB$tores.com All rights reserved.
       </Box>
     </Box>
   );

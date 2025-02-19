@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Link,
   Button,
   IconButton,
   Collapse,
@@ -12,12 +11,11 @@ import {
 import { FaMoon, FaSun } from "react-icons/fa";
 import { HamburgerIcon, CloseIcon, PlusSquareIcon } from "@chakra-ui/icons";
 import { useColorMode } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { isOpen, onToggle } = useDisclosure(); // Mobile menu state
-
-  // Toggle light/dark mode
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode(); // Toggle light/dark mode
 
   return (
     <Box
@@ -31,10 +29,7 @@ function Navbar() {
       zIndex={10}
     >
       <Flex align="center">
-        <Link
-          href="/"
-          _hover={{ textDecoration: "underline", color: "red.400" }}
-        >
+        <Link to="/">
           <Box fontSize="2xl" fontWeight="bold" letterSpacing="wide">
             jB$tores 🛒
           </Box>
@@ -44,20 +39,23 @@ function Navbar() {
 
         {/* Desktop Links */}
         <HStack spacing={8} display={{ base: "none", md: "flex" }}>
-          <NavItem href="#">Chat</NavItem>
-          <NavItem href="#">Services</NavItem>
-          <NavItem href="#">About</NavItem>
-          <NavItem href="#">Contact</NavItem>
-          <Link to={"/signin"} color="white">
+          <NavItem to="/chat">Chat</NavItem>
+          <NavItem to="/services">Services</NavItem>
+          <NavItem to="/about">About</NavItem>
+          <NavItem to="/contact">Contact</NavItem>
+
+          {/* Fixed Sign In Button */}
+          <Link to="/signin">
             <Button colorScheme="red" variant="solid">
               Sign In
             </Button>
           </Link>
         </HStack>
 
-        {/* Toggle modes */}
-        <HStack spacing={2} alignItems={"center"} margin={4}>
-          <Link to={"/create"} color="white">
+        {/* Toggle Modes */}
+        <HStack spacing={2} alignItems="center" margin={4}>
+          {/* Fixed Create Button */}
+          <Link to="/create">
             <Button colorScheme="green" variant="solid">
               <PlusSquareIcon />
             </Button>
@@ -91,13 +89,17 @@ function Navbar() {
           borderRadius="md"
         >
           <Flex direction="column" gap={3} align="center">
-            <NavItem href="/">Chat</NavItem>
-            <NavItem href="/services">Services</NavItem>
-            <NavItem href="/about">About</NavItem>
-            <NavItem href="/contact">Contact</NavItem>
-            <Button colorScheme="red" variant="solid" borderRadius="full">
-              Sign In
-            </Button>
+            <NavItem to="/chat">Chat</NavItem>
+            <NavItem to="/services">Services</NavItem>
+            <NavItem to="/about">About</NavItem>
+            <NavItem to="/contact">Contact</NavItem>
+
+            {/* Fixed Sign In Button */}
+            <Link to="/signin">
+              <Button colorScheme="red" variant="solid" borderRadius="full">
+                Sign In
+              </Button>
+            </Link>
           </Flex>
         </Box>
       </Collapse>
@@ -106,14 +108,11 @@ function Navbar() {
 }
 
 // Reusable Nav Item
-const NavItem = ({ href, children }) => (
-  <Link
-    href={href}
-    fontSize="lg"
-    fontWeight="medium"
-    _hover={{ color: "red.500" }}
-  >
-    {children}
+const NavItem = ({ to, children }) => (
+  <Link to={to}>
+    <Box fontSize="lg" fontWeight="medium" _hover={{ color: "red.500" }}>
+      {children}
+    </Box>
   </Link>
 );
 
