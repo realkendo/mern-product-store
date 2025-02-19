@@ -8,18 +8,19 @@ function ChatPage() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
+    socket.on("receiveMessage", (data) => {
       setMessages((prevMessages) => [...prevMessages, data]);
     });
 
     return () => {
-      socket.off("receive_message");
+      socket.off("receiveMessage");
     };
   }, []);
 
   const sendMessage = () => {
     if (message.trim()) {
-      socket.emit("send_message", message);
+      console.log("sending message");
+      socket.emit("sendMessage", message);
       setMessage("");
     }
   };
@@ -44,8 +45,19 @@ function ChatPage() {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Type a message..."
+        style={{ width: "50%", padding: "5px", height: "30px" }}
       />
-      <button onClick={sendMessage}>Send</button>
+      <button
+        onClick={sendMessage}
+        style={{
+          margin: "5px",
+          border: "2px solid blue",
+          padding: "5px",
+          borderRadius: "5px",
+        }}
+      >
+        Send
+      </button>
     </div>
   );
 }

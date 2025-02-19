@@ -41,6 +41,7 @@ io.on("connection", (socket) => {
     try {
       const newMessage = new ChatMessage({ sender: "User", message });
       await newMessage.save();
+      console.log("message saved to database");
     } catch (error) {
       console.error("Error saving message:", error);
     }
