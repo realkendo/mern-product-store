@@ -5,6 +5,7 @@ import Createpage from "./pages/createPage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import SignIn from "./pages/SignIn";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   const { colorMode } = useColorMode();
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/create" element={<Createpage />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/chat" element={<ChatPage />} />
           </Routes>
         </Box>
 
