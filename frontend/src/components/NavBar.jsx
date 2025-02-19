@@ -31,22 +31,26 @@ function Navbar() {
       zIndex={10}
     >
       <Flex align="center">
-        {/* Logo */}
-        <Box fontSize="2xl" fontWeight="bold" letterSpacing="wide">
-          🏦dB Stores
-        </Box>
+        <Link
+          href="/"
+          _hover={{ textDecoration: "underline", color: "red.400" }}
+        >
+          <Box fontSize="2xl" fontWeight="bold" letterSpacing="wide">
+            jB$tores 🛒
+          </Box>
+        </Link>
 
         <Spacer />
 
         {/* Desktop Links */}
         <HStack spacing={8} display={{ base: "none", md: "flex" }}>
-          <NavItem href="#">Home</NavItem>
+          <NavItem href="#">Chat</NavItem>
           <NavItem href="#">Services</NavItem>
           <NavItem href="#">About</NavItem>
           <NavItem href="#">Contact</NavItem>
-          <Link to={"/signup"} color="white">
+          <Link to={"/signin"} color="white">
             <Button colorScheme="red" variant="solid">
-              Sign Up
+              Sign In
             </Button>
           </Link>
         </HStack>
@@ -87,12 +91,12 @@ function Navbar() {
           borderRadius="md"
         >
           <Flex direction="column" gap={3} align="center">
-            <NavItem href="/">Home</NavItem>
+            <NavItem href="/">Chat</NavItem>
             <NavItem href="/services">Services</NavItem>
             <NavItem href="/about">About</NavItem>
             <NavItem href="/contact">Contact</NavItem>
             <Button colorScheme="red" variant="solid" borderRadius="full">
-              Sign Up
+              Sign In
             </Button>
           </Flex>
         </Box>

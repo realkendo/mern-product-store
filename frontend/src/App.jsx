@@ -4,7 +4,7 @@ import Homepage from "./pages/HomePage";
 import Createpage from "./pages/createPage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import SignUp from "./pages/SIgnUp";
+import SignIn from "./pages/SignIn";
 
 function App() {
   const { colorMode } = useColorMode();
@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/create" element={<Createpage />} />
-            <Route path="/signup" eleemnt={<SignUp />} />
+            <Route path="/signin" eleemnt={<SignIn />} />
           </Routes>
         </Box>
 
