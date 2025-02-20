@@ -47,7 +47,7 @@ function Navbar() {
           {/* Fixed Sign In Button */}
           <Link to="/signin">
             <Button colorScheme="red" variant="solid">
-              Sign In
+              login
             </Button>
           </Link>
         </HStack>

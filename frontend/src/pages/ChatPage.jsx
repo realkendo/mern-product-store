@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
+import { useNavigate } from "react-router-dom";
 
-const socket = io("http://localhost:5000"); // Change to your server URL
+// server URL
+const socket = io("http://localhost:5000");
 
 function ChatPage() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem("token"); // Get token from local storage
+    if (!token) {
+      navigate("/login"); //redirect to login page if token is not present
+      return;
+    }
     // Fetch messages from backend API
     fetch("http://localhost:5000/api/chat/")
       .then((res) => res.json())
@@ -71,6 +79,9 @@ function ChatPage() {
           border: "2px solid blue",
           padding: "5px",
           borderRadius: "5px",
+          background: "#11a",
+          color: "white",
+          width: "80px",
         }}
       >
         Send

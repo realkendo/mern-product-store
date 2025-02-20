@@ -1,4 +1,5 @@
 import express from "express";
+import authMiddleware from "../middleware/authMiddleware.js";
 
 // import routes from controller functions file
 import {
@@ -12,15 +13,15 @@ import {
 const router = express.Router();
 
 // get router for all products
-router.get("/", getProducts);
+router.get("/", authMiddleware, getProducts);
 
 // post router for product
-router.post("/", createProduct);
+router.post("/", authMiddleware, createProduct);
 
 // Update router for a product
-router.put("/:id", updateProduct);
+router.put("/:id", authMiddleware, updateProduct);
 
 // delete router for product
-router.delete("/:id", deleteProduct);
+router.delete("/:id", authMiddleware, deleteProduct);
 
 export default router;
