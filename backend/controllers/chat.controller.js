@@ -12,9 +12,8 @@ export const getMessages = async (req, res) => {
 
 // Save a new message
 export const saveMessage = async (req, res) => {
-  const { sender, message } = req.body;
-
   try {
+    const { sender, message } = req.body;
     const newMessage = new ChatMessage({ sender, message });
     await newMessage.save();
     res.status(201).json(newMessage);

@@ -6,6 +6,7 @@ import { connectDB } from "./config/db.js";
 import productRoutes from "./routes/product.route.js";
 import chatRoutes from "./routes/chat.route.js";
 import ChatMessage from "./models/chat.model.js";
+import cors from "cors";
 
 // Initialize dotenv
 dotenv.config();
@@ -26,9 +27,12 @@ const io = new Server(server, {
 // Middleware for parsing JSON data
 app.use(express.json());
 
+// enabling cors for frontend requests
+app.use(cors({ origin: "http://localhost:5173" }));
+
 // Middleware to use routes
 app.use("/api/products", productRoutes);
-app.use("/api/routes/chat", chatRoutes);
+app.use("/api/chat", chatRoutes);
 
 // WebSocket connection handling
 io.on("connection", (socket) => {
@@ -42,12 +46,12 @@ io.on("connection", (socket) => {
       const newMessage = new ChatMessage({ sender: "User", message });
       await newMessage.save();
       console.log("message saved to database");
+
+      // Broadcast to all clients
+      io.emit("receiveMessage", newMessage);
     } catch (error) {
       console.error("Error saving message:", error);
     }
-
-    // Broadcast to all clients
-    io.emit("receiveMessage", message);
   });
 
   // Handle user disconnect

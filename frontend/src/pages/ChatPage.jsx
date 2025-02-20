@@ -8,7 +8,20 @@ function ChatPage() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    // Fetch messages from backend API
+    fetch("http://localhost:5000/api/chat/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched messages from database:", data); // Debug log
+        setMessages(data);
+      })
+      .catch((error) => console.error("Error fetching messages:", error));
+  }, []);
+
+  // listen for real-time messages from websocket
+  useEffect(() => {
     socket.on("receiveMessage", (data) => {
+      console.log("message received on frontend", data);
       setMessages((prevMessages) => [...prevMessages, data]);
     });
 
@@ -17,8 +30,10 @@ function ChatPage() {
     };
   }, []);
 
+  // send message via web socket
   const sendMessage = () => {
     if (message.trim()) {
+      const newMessage = { sender: "user", message };
       console.log("sending message");
       socket.emit("sendMessage", message);
       setMessage("");
@@ -37,7 +52,9 @@ function ChatPage() {
         }}
       >
         {messages.map((msg, index) => (
-          <div key={index}>{msg}</div>
+          <div key={index}>
+            <strong>{msg.sender}:</strong> {msg.message}
+          </div>
         ))}
       </div>
       <input
