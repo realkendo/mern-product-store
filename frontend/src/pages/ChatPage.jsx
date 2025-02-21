@@ -49,7 +49,11 @@ function ChatPage() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div
+      style={{
+        padding: "20px",
+      }}
+    >
       <h2>Live Chat</h2>
       <div
         style={{

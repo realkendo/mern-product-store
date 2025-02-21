@@ -13,7 +13,7 @@ const SignIn = () => {
     setError(""); //clear previous error message
 
     try {
-      const response = await fetch("https://localhost:5000/api/auth/signin", {
+      const response = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,9 +35,16 @@ const SignIn = () => {
   };
   return (
     <>
-      <div style={{ padding: "20px" }}>
-        <h2>Login</h2>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+      <div
+        style={{
+          padding: "20px",
+          display: "grid",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <h2 style={{ textAlign: "center" }}>Login</h2>
+
         <form onSubmit={handleSubmit}>
           <input
             type="email"
@@ -58,10 +65,19 @@ const SignIn = () => {
           />
           <button
             type="submit"
-            style={{ padding: "5px 10px", background: "blue", color: "white" }}
+            style={{
+              padding: "5px 10px",
+              background: "blue",
+              color: "white",
+              width: "80%",
+              margin: "10px 20px",
+            }}
           >
             Sign In
           </button>
+          {error && (
+            <h3 style={{ color: "red", textAlign: "center" }}>{error} !!!</h3>
+          )}
         </form>
       </div>
     </>

@@ -9,7 +9,7 @@ export const signin = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400), json({ message: "User not found" });
+      return res.status(400).json({ message: "User not found" });
     }
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
@@ -20,7 +20,7 @@ export const signin = async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id, email: user.email },
-      procecss.env.JWT_SECRET,
+      process.env.JWT_SECRET,
       {
         expiresIn: "1h",
       }
