@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
@@ -21,18 +20,20 @@ const SignIn = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || "Sign in failed");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Sign in failed");
       }
 
+      const data = await response.json();
       localStorage.setItem("token", data.token); //store the token in local storage
       navigate("/chat"); // redirect to the chat page
     } catch (error) {
-      setError(error.message);
+      console.error(" Login error: ", error);
+      setError(error.message || "something went wrong, please try again.");
     }
   };
+
   return (
     <>
       <div

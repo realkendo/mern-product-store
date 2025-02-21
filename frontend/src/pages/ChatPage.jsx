@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 
-// server URL
-const socket = io("http://localhost:5000");
-
 function ChatPage() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [socket, setSocket] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,34 +14,58 @@ function ChatPage() {
       navigate("/login"); //redirect to login page if token is not present
       return;
     }
+
+    // initializing socket connection with authentication
+    const newSocket = io("http://localhost:5000", {
+      auth: { token }, //pass token for authentication
+      transports: ["websocket"], //ensure websocket transport
+    });
+
+    setSocket(newSocket);
+
     // Fetch messages from backend API
-    fetch("http://localhost:5000/api/chat/")
+    fetch("http://localhost:5000/api/chat/", {
+      method: "GET",
+      headers: {
+        "content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched messages from database:", data); // Debug log
         setMessages(data);
       })
       .catch((error) => console.error("Error fetching messages:", error));
-  }, []);
+    return () => {
+      newSocket.disconnect();
+    };
+  }, [navigate]);
 
   // listen for real-time messages from websocket
   useEffect(() => {
-    socket.on("receiveMessage", (data) => {
+    if (!socket) return; //prevents errors if socket is null
+
+    console.log("Socket initialized: ", socket);
+
+    const handleMessage = (data) => {
       console.log("message received on frontend", data);
       setMessages((prevMessages) => [...prevMessages, data]);
-    });
+    };
+
+    socket.on("receiveMessage", handleMessage);
 
     return () => {
-      socket.off("receiveMessage");
+      socket.off("receiveMessage", handleMessage);
     };
-  }, []);
+  }, [socket]); //now listens when socket updates
 
-  // send message via web socket
+  // send message function
   const sendMessage = () => {
     if (message.trim()) {
-      const newMessage = { sender: "user", message };
-      console.log("sending message");
-      socket.emit("sendMessage", message);
+      const newMessage = { sender: "user", message: message.trim() };
+      console.log("sending message", newMessage);
+      socket.emit("sendMessage", newMessage); //send message as object
       setMessage("");
     }
   };

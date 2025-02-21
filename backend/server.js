@@ -47,11 +47,21 @@ io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
   // Receive chat message from client
-  socket.on("sendMessage", async (message) => {
-    console.log("Received message:", message);
+  socket.on("sendMessage", async (data) => {
+    console.log("Received message:", data);
+
+    // ensure data is an object and contains a message string
+    if (typeof data !== "object" || typeof data.message !== "string") {
+      console.error("Invalid message format:", data);
+      return;
+    }
 
     try {
-      const newMessage = new ChatMessage({ sender: "User", message });
+      const newMessage = new ChatMessage({
+        sender: data.sender || "User", //using provided user or default
+        message: data.message, //enxuring only string data is saved
+      });
+
       await newMessage.save();
       console.log("message saved to database");
 
