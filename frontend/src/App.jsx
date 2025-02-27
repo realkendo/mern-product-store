@@ -1,12 +1,17 @@
 import { Box, Flex, useColorMode } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+// pages
 import Homepage from "./pages/HomePage";
 import Createpage from "./pages/createPage";
 import SignIn from "./pages/SignIn";
 import ChatPage from "./pages/ChatPage";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Services from "./pages/Services";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   const { colorMode } = useColorMode();
@@ -25,6 +30,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
 
             <Route
               path="/create"
